@@ -1,0 +1,4 @@
+<map id="Ogre::ImGuiOverlay" name="Ogre::ImGuiOverlay">
+<area shape="rect" id="node2" href="$class_ogre_1_1_overlay.html" title="Represents a layer which is rendered on top of the &#39;normal&#39; scene contents. " alt="" coords="23,80,126,107"/>
+<area shape="rect" id="node3" href="$class_ogre_1_1_allocated_object.html" title="OverlayAlloc" alt="" coords="27,5,123,32"/>
+</map>
