@@ -65,6 +65,8 @@ namespace Ogre
         @autoreleasepool
         {
             mDevice = MTLCreateSystemDefaultDevice();
+            OgreAssert(mDevice, "Could not create Metal Device");
+
             mMainCommandQueue = [mDevice newCommandQueue];
             mCurrentCommandBuffer = [mMainCommandQueue commandBuffer];
             mBlitEncoder = 0;
@@ -121,7 +123,7 @@ namespace Ogre
         @autoreleasepool
         {
             mCurrentCommandBuffer = [mMainCommandQueue commandBuffer];
-#if OGRE_PROFILING == OGRE_PROFILING_REMOTERY
+#if OGRE_PROFILING
             _rmt_BindMetal( mCurrentCommandBuffer );
 #endif
         }
@@ -158,6 +160,8 @@ namespace Ogre
     //-------------------------------------------------------------------------
     void MetalDevice::stall(void)
     {
+        // FIXME stalling currently kills renderencoder without proper recovery
+        return;
         __block dispatch_semaphore_t blockSemaphore = mStallSemaphore;
         [mCurrentCommandBuffer addCompletedHandler:^(id<MTLCommandBuffer> buffer)
         {
